@@ -3,6 +3,7 @@ package com.student.ust.controller;
 import com.student.ust.entity.Book;
 import com.student.ust.entity.Student;
 import com.student.ust.service.BookService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+@Slf4j
 
 @RestController
 public class BookController {
@@ -22,6 +24,9 @@ public class BookController {
     }
     @GetMapping("/book/{id}")
     public ResponseEntity<Book> get(@PathVariable  Integer id) {
+
+        log.debug("Get-invoked");
+
         try {
             Book book = bookService.getBookById(id);
             return new ResponseEntity<Book>(book, HttpStatus.OK);
