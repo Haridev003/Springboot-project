@@ -14,8 +14,8 @@ public class Student {
     private int age;
     private  int rollNo;
 
-    @OneToOne
+   /** @OneToOne
     @JoinColumn(name ="book_id")
-    private Book book;
+    private Book book;*/
 
 }
