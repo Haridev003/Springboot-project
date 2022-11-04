@@ -52,4 +52,10 @@ public class StudentController {
        studentService.saveStudent(student);
     }
 
+    @PutMapping("/student")
+      public void update(@RequestBody Student student){
+       Student updatedStudent = studentService.updateStudent(student);
+
+    }
+
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 public class StudentService {
@@ -27,4 +28,15 @@ public class StudentService {
     public void removeById(Integer id) {
         studentRespository.deleteById(id);
     }
+     public Student updateStudent(Student student){
+        Student updateStudent = studentRespository.findById(student.getStudentId()).orElseThrow(()->
+                new NoSuchElementException());
+        updateStudent.setName(student.getName());
+        updateStudent.setAge(student.getAge());
+        updateStudent.setRollNo(student.getRollNo());
+        studentRespository.save(updateStudent);
+        return updateStudent;
+
+
+     }
 }

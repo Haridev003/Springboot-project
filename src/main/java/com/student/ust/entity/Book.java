@@ -9,12 +9,14 @@ import javax.persistence.Id;
 
 @Entity
 @Data
-public class Student {
+public class Book {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int studentId;
-    private String name;
-    private int age;
-    private  int rollNo;
+     private int bookId;
+    private String bookName;
+    private  String authorName;
+    private  int isbNo;
+
 
 }
