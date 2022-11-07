@@ -3,6 +3,8 @@ package com.student.ust.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @Data
@@ -14,7 +16,9 @@ public class Book {
     private String bookName;
     private  String authorName;
     private  int isbNo;
-  @OneToMany
+    private LocalDate createdDate;
+    private LocalDate ModifiedDate;
+ /**  @OneToMany
     @JoinColumn(name = "student_id")
-    private Student student;
+    private Student1 student;*/
 }
