@@ -1,11 +1,12 @@
 package com.student.ust.service;
 
 import com.student.ust.entity.Book;
-import com.student.ust.entity.Student;
 import com.student.ust.respository.BookRespositry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -14,6 +15,8 @@ public class BookService {
     @Autowired
     BookRespositry bookRespositry;
     public  void saveBook(Book book) {
+        book.setCreatedDate(LocalDateTime.now());
+        book.setModifiedDate(LocalDateTime.now());
         bookRespositry.save(book);
     }
 
@@ -31,6 +34,7 @@ public class BookService {
         updateBook.setBookName(book.getBookName());
         updateBook.setAuthorName(book.getAuthorName());
         updateBook.setIsbNo(book.getIsbNo());
+        updateBook.setModifiedDate(LocalDateTime.now());
        // updateBook.setRollNo(student.getRollNo());
         bookRespositry.save(updateBook);
         return updateBook;

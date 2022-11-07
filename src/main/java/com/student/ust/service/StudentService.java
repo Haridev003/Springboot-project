@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -19,8 +20,8 @@ public class StudentService {
     }
 
     public void saveStudent(Student student) {
-        student.setCreatedDate(LocalDate.now());
-        student.setModifiedDate(LocalDate.now());
+        student.setCreatedDate(LocalDateTime.now());
+        student.setModifiedDate(LocalDateTime.now());
         studentRespository.save(student);
     }
 
@@ -37,7 +38,7 @@ public class StudentService {
         updateStudent.setName(student.getName());
         updateStudent.setAge(student.getAge());
         updateStudent.setRollNo(student.getRollNo());
-         updateStudent.setModifiedDate(LocalDate.now());
+         updateStudent.setModifiedDate(LocalDateTime.now());
         studentRespository.save(updateStudent);
 
         return updateStudent;

@@ -4,10 +4,12 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity
 @Data
+
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -15,14 +17,14 @@ public class Student {
     private String name;
     private int age;
     private  int rollNo;
-    private LocalDate createdDate;
-    private LocalDate ModifiedDate;
+    private LocalDateTime createdDate;
+    private LocalDateTime modifiedDate;
 
    /** @OneToOne
     @JoinColumn(name ="book_id")
     private Book book;*/
-   /**@ManyToOne
-    @JoinColumn(name="book_id")
-    private Book1 book;*/
+   @OneToMany(cascade = CascadeType.ALL)
+   // @JoinColumn(name="book_id")
+    private Set<Book> book;
 
 }

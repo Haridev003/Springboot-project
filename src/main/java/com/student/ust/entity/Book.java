@@ -1,13 +1,15 @@
 package com.student.ust.entity;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @Data
+
 public class Book {
 
     @Id
@@ -16,9 +18,9 @@ public class Book {
     private String bookName;
     private  String authorName;
     private  int isbNo;
-    private LocalDate createdDate;
-    private LocalDate ModifiedDate;
- /**  @OneToMany
+    private LocalDateTime createdDate;
+    private LocalDateTime modifiedDate;
+  @ManyToOne
     @JoinColumn(name = "student_id")
-    private Student1 student;*/
+     Student student;
 }
