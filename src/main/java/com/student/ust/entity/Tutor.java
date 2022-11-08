@@ -15,7 +15,7 @@ public class Tutor {
     private String tutorName;
     //private  String subjectName;
 
-    @ManyToMany(cascade =  CascadeType.ALL)
-    List<Student> student;
+    /**@ManyToMany(cascade =  CascadeType.ALL)
+    List<Student> student;*/
 
 }
