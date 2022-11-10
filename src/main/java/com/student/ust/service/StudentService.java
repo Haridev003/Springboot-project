@@ -2,6 +2,7 @@ package com.student.ust.service;
 
 import com.student.ust.entity.Student;
 import com.student.ust.respository.StudentRespository;
+import org.hibernate.Criteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +16,16 @@ public class StudentService {
       @Autowired
     StudentRespository studentRespository;
     public Student getStudentById(Integer id) {
+        Student studentById = studentRespository.findById(id).orElse(null);
+        getByName(studentById.getName());
+        return studentById;
+        //return studentRespository.findById(id).orElse(null);
+    }
 
-        return studentRespository.findById(id).orElse(null);
+    private void getByName(String name) {
+        Student studentByName = studentRespository.findByName(name);
+        System.out.printf(" Student Name is>>>    "+studentByName.getName());
+        System.out.printf(" Student roll number >>>  "+studentByName.getRollNo());
     }
 
     public void saveStudent(Student student) {
@@ -45,4 +54,6 @@ public class StudentService {
 
 
      }
+    // Criteria Criteria cr = session.createCriteria(Student.class);
+
 }

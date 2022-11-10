@@ -12,7 +12,7 @@ import java.util.Set;
 @Table(name="student_mappedby")
 public class Student {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int studentId;
     private String name;
     private int age;
