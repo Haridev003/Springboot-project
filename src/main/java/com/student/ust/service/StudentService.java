@@ -10,6 +10,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Service
 public class StudentService {
@@ -54,6 +56,15 @@ public class StudentService {
 
 
      }
+
+    public void emailVaild(String email) {
+        String regex = "\"^([A-Z a-z 0-9+_.-]+)@([A-Z a-z 0-9]+)\\\\.([a-z]+)$\"";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(email);
+        matcher.matches();
+
+
+    }
     // Criteria Criteria cr = session.createCriteria(Student.class);
 
 }

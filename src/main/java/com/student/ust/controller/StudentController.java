@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -60,8 +61,13 @@ public class StudentController {
 
 
     @PostMapping("/student")
-    public void add (@RequestBody Student student){
-       studentService.saveStudent(student);
+    public void add (  @RequestBody Student student){
+      try {
+           studentService.emailVaild(student.getEmail());
+          studentService.saveStudent(student);
+      } catch (Exception e) {
+
+      }
     }
 
     @PutMapping("/student")
