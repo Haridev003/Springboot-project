@@ -1,8 +1,11 @@
 package com.student.ust.entity;
 
 import lombok.Data;
+import lombok.NonNull;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Pattern;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Set;
@@ -19,6 +22,10 @@ public class Student {
     private  int rollNo;
     private LocalDateTime createdDate;
     private LocalDateTime modifiedDate;
+    //@Email(regexp = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}",flags = Pattern.Flag.CASE_INSENSITIVE)
+    private String  email;
+    @NonNull
+    private String password;
 
    /** @OneToOne
     @JoinColumn(name ="book_id")

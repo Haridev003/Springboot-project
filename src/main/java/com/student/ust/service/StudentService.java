@@ -16,8 +16,8 @@ public class StudentService {
       @Autowired
     StudentRespository studentRespository;
     public Student getStudentById(Integer id) {
-        Student studentById = studentRespository.findById(id).orElse(null);
-        getByName(studentById.getName());
+        Student studentById = studentRespository.findById(id).orElseThrow(()-> new NoSuchElementException());
+       // getByName(studentById.getName());
         return studentById;
         //return studentRespository.findById(id).orElse(null);
     }

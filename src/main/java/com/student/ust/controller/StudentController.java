@@ -27,6 +27,18 @@ public class StudentController {
     }
 
     }
+    @GetMapping("/student/?")
+    public ResponseEntity<Student> get2(@RequestParam Integer id){
+        try {
+            Student student = studentService.getStudentById(id);
+            return new ResponseEntity<Student>(student, HttpStatus.OK);
+        }
+        catch (NoSuchElementException e){
+            return new ResponseEntity<Student>(HttpStatus.NOT_FOUND);
+
+        }
+
+    }
     @GetMapping("/student")
     public ResponseEntity<List<Student>> get2( ){
         try {
