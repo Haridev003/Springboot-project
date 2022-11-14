@@ -1,5 +1,6 @@
 package com.student.ust.controller;
 
+import com.student.ust.exception.BussinessException;
 import com.student.ust.entity.Student;
 import com.student.ust.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,16 +8,29 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+/**
+ * The type Student controller.
+ */
 @RestController
 public class StudentController {
 
+    /**
+     * The Student service.
+     */
     @Autowired
     StudentService studentService;
-   @GetMapping("/student/{id}")
+
+
+    /**
+     * Get response entity.
+     *
+     * @param id the id
+     * @return the response entity
+     */
+    @GetMapping("/student/{id}")
     public ResponseEntity<Student> get(@PathVariable Integer id){
     try {
         Student student = studentService.getStudentById(id);
@@ -28,6 +42,13 @@ public class StudentController {
     }
 
     }
+
+    /**
+     * Get 2 response entity.
+     *
+     * @param id the id
+     * @return the response entity
+     */
     @GetMapping("/student/?")
     public ResponseEntity<Student> get2(@RequestParam Integer id){
         try {
@@ -40,6 +61,12 @@ public class StudentController {
         }
 
     }
+
+    /**
+     * Get 2 response entity.
+     *
+     * @return the response entity
+     */
     @GetMapping("/student")
     public ResponseEntity<List<Student>> get2( ){
         try {
@@ -53,23 +80,43 @@ public class StudentController {
 
         }
 
-      @DeleteMapping("/student/{id}")
+    /**
+     * Delete.
+     *
+     * @param id the id
+     */
+    @DeleteMapping("/student/{id}")
       public void delete(@PathVariable  Integer id)
       {
           studentService.removeById(id);
       }
 
 
+    /**
+     * Add response entity.
+     *
+     * @param student the student
+     * @return the response entity
+     */
     @PostMapping("/student")
-    public void add (  @RequestBody Student student){
+    public ResponseEntity<Student> add (  @RequestBody Student student){
       try {
-           studentService.emailVaild(student.getEmail());
-          studentService.saveStudent(student);
-      } catch (Exception e) {
 
+          studentService.saveStudent(student);
+
+
+           return  new ResponseEntity<Student>(student,HttpStatus.OK);
+
+      } catch (BussinessException e) {
+          return  new ResponseEntity<Student>(student,HttpStatus.PRECONDITION_FAILED);
       }
     }
 
+    /**
+     * Update.
+     *
+     * @param student the student
+     */
     @PutMapping("/student")
       public void update(@RequestBody Student student){
        Student updatedStudent = studentService.updateStudent(student);

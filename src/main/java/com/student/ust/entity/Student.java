@@ -1,5 +1,6 @@
 package com.student.ust.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NonNull;
 import org.springframework.validation.annotation.Validated;
