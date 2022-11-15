@@ -1,10 +1,12 @@
 package com.student.ust.service;
 
+import com.student.ust.dto.StudentDTO;
 import com.student.ust.exception.InvalidException;
 import com.student.ust.entity.Student;
 import com.student.ust.respository.StudentRespository;
 import com.student.ust.util.UstUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -25,6 +27,8 @@ public class StudentService {
      */
     @Autowired
     StudentRespository studentRespository;
+    @Autowired
+    private ModelMapper modelMapper;
 
     /**
      * Gets student by id.
@@ -36,6 +40,8 @@ public class StudentService {
     public Student getStudentById(Integer id) {
         Student studentById = studentRespository.findById(id).orElseThrow(()-> new NoSuchElementException());
        // getByName(studentById.getName());
+        studentById.setPassword(" ");
+        studentById.setEmail(" ");
         return studentById;
         //return studentRespository.findById(id).orElse(null);
     }
@@ -109,6 +115,10 @@ public class StudentService {
 
 
      }
+
+    public StudentDTO convertToDto(Student student) {
+        return  modelMapper.map(student,StudentDTO.class);
+    }
 
     /**
      * Email vaild int.

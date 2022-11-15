@@ -1,5 +1,6 @@
 package com.student.ust.controller;
 
+import com.student.ust.dto.StudentDTO;
 import com.student.ust.exception.BussinessException;
 import com.student.ust.entity.Student;
 import com.student.ust.service.StudentService;
@@ -31,13 +32,13 @@ public class StudentController {
      * @return the response entity
      */
     @GetMapping("/student/{id}")
-    public ResponseEntity<Student> get(@PathVariable Integer id){
+    public ResponseEntity<StudentDTO> get(@PathVariable Integer id){
     try {
         Student student = studentService.getStudentById(id);
-        return new ResponseEntity<Student>(student, HttpStatus.OK);
+        return new ResponseEntity<StudentDTO>(studentService.convertToDto(student), HttpStatus.OK);
     }
     catch (NoSuchElementException e){
-        return new ResponseEntity<Student>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<StudentDTO>(HttpStatus.NOT_FOUND);
 
     }
 

@@ -1,7 +1,9 @@
-package com.student.ust.DTO;
+package com.student.ust.dto;
+
+import lombok.Data;
 
 import java.time.LocalDateTime;
-
+@Data
 public class StudentDTO {
     private int studentId;
     private String name;
