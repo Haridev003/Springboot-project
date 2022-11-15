@@ -7,6 +7,9 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+/**
+ * The type Book.
+ */
 @Entity
 @Data
 @Table(name="book_mappedby")
@@ -21,7 +24,10 @@ public class Book {
     private  int isbNo;
     private LocalDateTime createdDate;
     private LocalDateTime modifiedDate;
-  @ManyToOne
+    /**
+     * The Student.
+     */
+    @ManyToOne
     @JoinColumn(name = "student_id")
      Student student;
 }
